@@ -1,0 +1,37 @@
+#!/bin/bash
+
+arch=`uname -m`
+if [ "${arch}" = "i686" ]
+then
+        arch="i386"
+fi
+
+if [ "${arch}" = "x86_64" ]
+then
+        arch="amd64"
+fi
+
+if [ "${arch}" = "aarch64" ]
+then
+        arch="arm64"
+fi
+
+sed -i "s/Architecture:.*/Architecture: ${arch}/g"  deb/possword/DEBIAN/control
+
+qmake
+make clean
+/bin/rm possword txt2pw txt2db
+make
+cc -o txt2db txt2db.c -lsqlite3
+cc -o txt2pw txt2pw.c
+
+mkdir -p deb/possword/opt/possword/
+mkdir -p deb/possword/root/Desktop/
+mkdir -p deb/possword/$HOME/Desktop/
+
+cp possword logo-big.png logo.png txt2db txt2pw poem.db deb/possword/opt/possword/
+cp possword.desktop deb/possword/root/Desktop
+cp possword.desktop deb/possword/$HOME/Desktop
+
+cd deb
+sh mkdeb

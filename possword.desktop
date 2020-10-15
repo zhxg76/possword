@@ -1,0 +1,11 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=我要一个好记的密码
+GenericName=我要一个好记的密码
+Comment=我要一个好记的密码
+Exec=/opt/possword/possword
+Icon=/opt/possword/logo-big.png
+Terminal=false
+Type=Application
+StartupNotify=True
+Categories=Application
