@@ -1,0 +1,10 @@
+CONF="possword/DEBIAN/control"
+
+package=`grep Package ${CONF} | awk '{print $2}'`
+version=`grep Version ${CONF} | awk '{print $2}'`
+arch=`grep Architecture ${CONF} | awk '{print $2}'`
+
+chmod +x possword/DEBIAN/p*
+
+dpkg -b possword ${package}-${version}.${arch}.deb
+mv ${package}-${version}.${arch}.deb ..
