@@ -1,0 +1,6 @@
+Package: possword
+Version: 1.0
+Architecture: amd64
+Maintainer: 郑翔
+Section: application
+Description: Generate secure and memorable password from chinese poetry 使用古诗词生成安全好记的密码
